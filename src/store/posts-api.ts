@@ -1,19 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Post } from '../types/post';
 
-type PostResponse = {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
 export const postsApi = createApi({
   reducerPath: 'postsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com/' }),
   endpoints: (builder) => ({
-    getPosts: builder.query<PostResponse[], void>({
+    getPosts: builder.query<Post[], void>({
       query: () => `posts`,
     }),
-    getPost: builder.query<PostResponse, string>({
+    getPost: builder.query<Post, string>({
       query: (postId) => `posts/${postId}`,
     }),
   }),

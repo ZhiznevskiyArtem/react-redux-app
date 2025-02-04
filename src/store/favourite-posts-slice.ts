@@ -1,11 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
-type Post = {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-};
+import { Post } from '../types/post';
 
 const initialState: Post[] = [];
 
@@ -16,13 +10,13 @@ const favouritePostsSlice = createSlice({
   },
   reducers: {
     addFavouritePost(state, action: PayloadAction<Post>) {
-      const exists = state.favouritePosts.some(post => post.id === action.payload.id);
+      const exists = state.favouritePosts.some((post) => post.id === action.payload.id);
       if (!exists) {
         state.favouritePosts.push(action.payload);
       }
     },
     removeFavouritePost(state, action: PayloadAction<number>) {
-      state.favouritePosts = state.favouritePosts.filter(post => post.id !== action.payload);
+      state.favouritePosts = state.favouritePosts.filter((post) => post.id !== action.payload);
     },
   },
 });
